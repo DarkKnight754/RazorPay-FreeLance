@@ -1,0 +1,89 @@
+<!-- <button id="rzp-button1">Pay</button> -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form</title>
+    <link rel="stylesheet" href="Free_Lance.css">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="https://api.razorpay.com/v1/orders"></script>
+</head>
+<body>
+<form action="/submit" method="post">
+    
+    <h1 class="heading"> Registration Form</h1>
+    <label for="first_name">First Name:</label>
+    <input type="text" id="first_name" name="first_name" required>
+    <br>
+
+    <label for="last_name">Last Name:</label>
+    <input type="text" id="last_name" name="last_name" required>
+    <br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+    <br>
+
+    <label for="phone">Phone:</label>
+
+
+
+
+    
+    <input type="tel" id="phone" name="phone">
+    <br>
+
+    <label for="linkedin">LinkedIn ID:</label>
+    <input type="text" id="linkedin" name="linkedin">
+    <br>
+
+    <label for="twitter">Twitter:</label>
+    <input type="text" id="twitter" name="twitter">
+    <br>
+
+    <label for="resume">Resume Upload:</label>
+    <input type="file" id="resume" name="resume">
+    <br>
+
+    <label for="address">Address:</label>
+    <textarea id="address" name="address" rows="4"></textarea>
+    <br>
+
+    <label for="pin_code">Pin Code:</label>
+    <input type="text" id="pin_code" name="pin_code">
+    <br>
+
+    <input id="rzp-button1" type="submit" value="Submit">
+    
+</form>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+var options = {
+    "key": "rzp_test_uZR4yEjlPO2yjD", // Enter the Key ID generated from the Dashboard
+    "amount": "100", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "Acme Corp", //your business name
+    "description": "Test Transaction",
+    "image": "https://example.com/your_logo",
+    "order_id": "order_MPuhWfjE1Hta6C", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "callback_url": "https://eneqd3r9zrjok.x.pipedream.net/",
+    "prefill": { //We recommend using the prefill parameter to auto-fill customer's contact information especially their phone number
+        "name": "Gaurav Kumar", //your customer's name
+        "email": "gaurav.kumar@example.com",
+        "contact": "9000090000" //Provide the customer's phone number for better conversion rates 
+    },
+    "notes": {
+        "address": "Razorpay Corporate Office"
+    },
+    "theme": {
+        "color": "#3399cc"
+    }
+};
+var rzp1 = new Razorpay(options);
+document.getElementById('rzp-button1').onclick = function(e)
+{
+    rzp1.open();
+    e.preventDefault();
+}
+</script>
+</body>
+</html>
