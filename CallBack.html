@@ -24,11 +24,6 @@
     <br>
 
     <label for="phone">Phone:</label>
-
-
-
-
-    
     <input type="tel" id="phone" name="phone">
     <br>
 
@@ -42,6 +37,40 @@
 
     <label for="resume">Resume Upload:</label>
     <input type="file" id="resume" name="resume">
+    <div id="dropZone" ondragover="handleDragOver(event)" ondrop="handleDrop(event)">
+        <p>Drag and drop your resume here</p>
+    </div>
+    <script>
+        function handleDragOver(event) {
+            event.preventDefault();
+            event.dataTransfer.dropEffect = 'copy';
+        }
+
+        function handleDrop(event) {
+            event.preventDefault();
+
+            const files = event.dataTransfer.files;
+            if (files.length > 0) {
+                const file = files[0];
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    const resumeContent = e.target.result;
+                    // Handle the resume content here (e.g., display it on the page)
+                    displayResumeContent(resumeContent);
+                }
+
+                reader.readAsText(file);
+            }
+        }
+
+        function displayResumeContent(content) {
+            const resumeContentElement = document.createElement('pre');
+            resumeContentElement.textContent = content;
+
+            document.body.appendChild(resumeContentElement);
+        }
+    </script>
     <br>
 
     <label for="address">Address:</label>
